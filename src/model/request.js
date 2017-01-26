@@ -1,5 +1,4 @@
 /**
- *
  * @param {Array} list requests, where entity should include 'request' property
  * @constructor
  */
@@ -16,11 +15,14 @@ function Request(list) {
 }
 
 function parametersToObject(params) {
+    var request;
+
     if (params) {
+        request = params.request;
         return {
-            headers: params.request.headers,
-            method : params.request.method,
-            url    : params.request.url
+            headers: request.headers,
+            method : request.method,
+            url    : request.url
         }
     }
 }
