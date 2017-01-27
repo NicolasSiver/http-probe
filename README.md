@@ -2,6 +2,16 @@
 
 Utility for HTTP validation. Implementation is based on the Chrome debugging protocol.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+ 
+
+- [Motivation](#motivation)
+- [Snapshots](#snapshots)
+- [Links](#links)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Motivation
 
 While Selenium provides good set of tools to check UI feedback and states, it lacks tools for HTTP validation. 
