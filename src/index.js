@@ -26,6 +26,11 @@ HttpProbe.prototype.addMessages = function (messages) {
     }
 };
 
+HttpProbe.prototype.getEntity = function (search, Entity, method, selector) {
+    this.addMessages(this.getLogMessages());
+    return new Entity(this.getParametersBySearch(search, this.getMessagesByMethod(method, this.rawLogs), selector));
+};
+
 HttpProbe.prototype.getMessagesByMethod = function (method, messages) {
     return messages.filter(function (logMessage) {
         return logMessage.message.method === method;
@@ -46,23 +51,15 @@ HttpProbe.prototype.getParametersBySearch = function (search, messages, selector
 };
 
 HttpProbe.prototype.getRequest = function (search) {
-    this.addMessages(this.getLogMessages());
-    return new Request(this.getParametersBySearch(
-        search, this.getMessagesByMethod(NetworkEvents.REQUEST_WILL_SEND, this.rawLogs),
-        function (item) {
-            return item.message.params.request.url;
-        })
-    );
+    return this.getEntity(search, Request, NetworkEvents.REQUEST_WILL_SEND, function (item) {
+        return item.message.params.request.url;
+    });
 };
 
 HttpProbe.prototype.getResponse = function (search) {
-    this.addMessages(this.getLogMessages());
-    return new Response(this.getParametersBySearch(
-        search, this.getMessagesByMethod(NetworkEvents.RESPONSE_DID_RECEIVE, this.rawLogs),
-        function (item) {
-            return item.message.params.response.url;
-        })
-    );
+    return this.getEntity(search, Response, NetworkEvents.RESPONSE_DID_RECEIVE, function (item) {
+        return item.message.params.response.url;
+    });
 };
 
 function isString(value) {
