@@ -5,7 +5,7 @@ Utility for HTTP validation. Implementation is based on the Chrome debugging pro
 ![Version](https://img.shields.io/npm/v/http-probe.svg)
 ![Dependencies](https://david-dm.org/NicolasSiver/http-probe.svg)
 ![bitHound Score](https://www.bithound.io/github/NicolasSiver/http-probe/badges/score.svg)
-![Code Climate](https://img.shields.io/codeclimate/github/NicolasSiver/http-probe.svg)
+![Code Climate](https://codeclimate.com/github/NicolasSiver/http-probe/badges/gpa.svg)
 [![Coverage Status](https://coveralls.io/repos/github/NicolasSiver/http-probe/badge.svg?branch=master)](https://coveralls.io/github/NicolasSiver/http-probe?branch=master)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
