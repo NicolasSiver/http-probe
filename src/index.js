@@ -47,7 +47,7 @@ HttpProbe.prototype.getParametersBySearch = function (search, messages, selector
     messages.forEach(function (logMessage) {
         value = selector(logMessage);
 
-        if ((isString(search) && value.indexOf(search) != -1)
+        if ((isString(search) && value.indexOf(search) !== -1)
             || ((search instanceof RegExp) && search.test(value))) {
             result.push(logMessage.message.params);
         }
