@@ -3,6 +3,23 @@ var listToResults = require('./util/list-to-results'),
     Request       = require('./model/request'),
     Response      = require('./model/response');
 
+var entities = {
+    [NetworkEvents.REQUEST_WILL_SEND]   : {
+        Entity  : Request,
+        method  : NetworkEvents.REQUEST_WILL_SEND,
+        selector: function (item) {
+            return item.message.params.request.url;
+        }
+    },
+    [NetworkEvents.RESPONSE_DID_RECEIVE]: {
+        Entity  : Response,
+        method  : NetworkEvents.RESPONSE_DID_RECEIVE,
+        selector: function (item) {
+            return item.message.params.response.url;
+        }
+    }
+};
+
 /**
  * Network domain allows tracking network activities of the page. It exposes information about http requests and responses,
  * their headers, bodies, timing, etc.
@@ -27,9 +44,12 @@ HttpProbe.prototype.addMessages = function (messages) {
     }
 };
 
-HttpProbe.prototype.getEntity = function (search, Entity, method, selector) {
+HttpProbe.prototype.getEntity = function (search, entityMeta) {
+    var Entity = entityMeta.Entity, method = entityMeta.method, selector = entityMeta.selector;
+
     // Extract latest messages
     this.addMessages(this.getLogMessages());
+
     return new Entity(
         this.getParametersBySearch(search, this.getMessagesByMethod(method, this.rawLogs), selector),
         listToResults
@@ -56,15 +76,11 @@ HttpProbe.prototype.getParametersBySearch = function (search, messages, selector
 };
 
 HttpProbe.prototype.getRequest = function (search) {
-    return this.getEntity(search, Request, NetworkEvents.REQUEST_WILL_SEND, function (item) {
-        return item.message.params.request.url;
-    });
+    return this.getEntity(search, entities[NetworkEvents.REQUEST_WILL_SEND]);
 };
 
 HttpProbe.prototype.getResponse = function (search) {
-    return this.getEntity(search, Response, NetworkEvents.RESPONSE_DID_RECEIVE, function (item) {
-        return item.message.params.response.url;
-    });
+    return this.getEntity(search, entities[NetworkEvents.RESPONSE_DID_RECEIVE]);
 };
 
 function isString(value) {
