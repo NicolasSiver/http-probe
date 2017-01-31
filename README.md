@@ -13,6 +13,11 @@ Utility for HTTP validation. Implementation is based on the Chrome debugging pro
  
 
 - [Motivation](#motivation)
+- [API](#api)
+  - [`constructor(provider)`](#constructorprovider)
+  - [`getRequest(search)`](#getrequestsearch)
+    - [`RequestResult`](#requestresult)
+  - [`getResponse(search)`](#getresponsesearch)
 - [Snapshots](#snapshots)
 - [Links](#links)
 
@@ -22,6 +27,47 @@ Utility for HTTP validation. Implementation is based on the Chrome debugging pro
 
 While Selenium provides good set of tools to check UI feedback and states, it lacks tools for HTTP validation. 
 HTTP Probe tries to solve an issue with HTTP testing.
+
+## API
+
+Create an instance of the HTTP Probe. Don't forget to teardown an instance, otherwise `http-probe` will accumulate HTTP requests from every consecutive `getRequest` or `getResponse` invocation.
+
+### `constructor(provider)`
+
+- `provider <Function>` should return an array of performance logs
+
+Example: 
+
+```
+const HttpProbe = require('http-probe');
+let httpProbe = new HttpProbe(() => myMethodToExtractPerformanceLogs());
+```
+
+### `getRequest(search)`
+
+- `search <String|RegExp>` a pattern which will be executed against an URL
+
+Returns a `Request` entity with several properties:
+
+- `length <Number>`, - total number of matched requests
+- `executed <Boolean>`, - if request was executed at least once
+- `executedOnce <Boolean>`, - if request was executed exactly _once_
+- `executedTwice <Boolean>`, - if request was executed exactly _twice_
+- `executeThrice <Boolean>`, - if request was executed exactly _thrice_
+- `first <RequestResult>`, - a result object for the first request
+- `second <RequestResult>`, - a result object for the second request
+- `third <RequestResult>`, - a result object for the third request
+- `last <RequestResult>`, - a result object for the last request
+
+#### `RequestResult`
+
+- `headers <Object>`, - request's headers
+- `method <String>`, - HTTP method, 'GET', 'POST', etc.
+- `url <String>`, - request's fully qualified URL 
+
+### `getResponse(search)`
+
+- `search <String|RegExp>` a pattern which will be executed against an URL
 
 ## Snapshots
 
