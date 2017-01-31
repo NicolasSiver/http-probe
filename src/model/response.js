@@ -1,17 +1,10 @@
 /**
  * @param {Array} list
+ * @param {Function} listToResults
  * @constructor
  */
-function Response(list) {
-    this.length = list.length;
-    this.received = this.length > 0;
-    this.receivedOnce = this.length == 1;
-    this.receivedTwice = this.length == 2;
-    this.receivedThrice = this.length == 3;
-    this.first = parametersToObject(list[0]);
-    this.second = parametersToObject(list[1]);
-    this.third = parametersToObject(list[2]);
-    this.last = parametersToObject(list[list.length - 1]);
+function Response(list, listToResults) {
+    return listToResults(list, 'received', parametersToObject);
 }
 
 function parametersToObject(params) {

@@ -1,4 +1,5 @@
-var NetworkEvents = require('./model/network-events'),
+var listToResults = require('./util/list-to-results'),
+    NetworkEvents = require('./model/network-events'),
     Request       = require('./model/request'),
     Response      = require('./model/response');
 
@@ -27,8 +28,12 @@ HttpProbe.prototype.addMessages = function (messages) {
 };
 
 HttpProbe.prototype.getEntity = function (search, Entity, method, selector) {
+    // Extract latest messages
     this.addMessages(this.getLogMessages());
-    return new Entity(this.getParametersBySearch(search, this.getMessagesByMethod(method, this.rawLogs), selector));
+    return new Entity(
+        this.getParametersBySearch(search, this.getMessagesByMethod(method, this.rawLogs), selector),
+        listToResults
+    );
 };
 
 HttpProbe.prototype.getMessagesByMethod = function (method, messages) {
