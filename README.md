@@ -2,6 +2,12 @@
 
 Utility for HTTP validation. Implementation is based on the Chrome debugging protocol.
 
+![Version](https://img.shields.io/npm/v/http-probe.svg)
+![Dependencies](https://david-dm.org/NicolasSiver/http-probe.svg)
+![bitHound Score](https://www.bithound.io/github/NicolasSiver/http-probe/badges/score.svg)
+![Code Climate](https://img.shields.io/codeclimate/github/NicolasSiver/http-probe.svg)
+[![Coverage Status](https://coveralls.io/repos/github/NicolasSiver/http-probe/badge.svg?branch=master)](https://coveralls.io/github/NicolasSiver/http-probe?branch=master)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
  
