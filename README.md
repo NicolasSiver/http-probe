@@ -54,10 +54,10 @@ Returns a `Request` entity with several properties:
 - `executedOnce <Boolean>`, - if request was executed exactly _once_
 - `executedTwice <Boolean>`, - if request was executed exactly _twice_
 - `executeThrice <Boolean>`, - if request was executed exactly _thrice_
-- `first <RequestResult>`, - a result object for the first request
-- `second <RequestResult>`, - a result object for the second request
-- `third <RequestResult>`, - a result object for the third request
-- `last <RequestResult>`, - a result object for the last request
+- `first <RequestResult>`, - a result object for the _first_ request
+- `second <RequestResult>`, - a result object for the _second_ request
+- `third <RequestResult>`, - a result object for the _third_ request
+- `last <RequestResult>`, - a result object for the _last_ request
 
 #### `RequestResult`
 
@@ -68,6 +68,10 @@ Returns a `Request` entity with several properties:
 ### `getResponse(search)`
 
 - `search <String|RegExp>` a pattern which will be executed against an URL
+
+```
+expect(httpProbe.getRequest('accounts/8`).executed).to.be.true;
+```
 
 ## Snapshots
 
