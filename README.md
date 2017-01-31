@@ -65,13 +65,15 @@ Returns a `Request` entity with several properties:
 - `method <String>`, - HTTP method, 'GET', 'POST', etc.
 - `url <String>`, - request's fully qualified URL 
 
-### `getResponse(search)`
-
-- `search <String|RegExp>` a pattern which will be executed against an URL
+Example:
 
 ```
 expect(httpProbe.getRequest('accounts/8`).executed).to.be.true;
 ```
+
+### `getResponse(search)`
+
+- `search <String|RegExp>` a pattern which will be executed against an URL
 
 ## Snapshots
 
