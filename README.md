@@ -75,6 +75,35 @@ expect(httpProbe.getRequest('accounts/8`).executed).to.be.true;
 
 - `search <String|RegExp>` a pattern which will be executed against an URL
 
+Returns a `Response` entity with several properties:
+
+- `length <Number>`, - total number of matched responses
+- `received <Boolean>`, - if response was delivered at least once
+- `receivedOnce <Boolean>`, - if response was delivered exactly _once_
+- `receivedTwice <Boolean>`, - if response was delivered exactly _twice_
+- `receivedThrice <Boolean>`, - if response was delivered exactly _thrice_
+- `first <ResponseResult>`, - a result object for the _first_ response
+- `second <ResponseResult>`, - a result object for the _second_ response
+- `third <ResponseResult>`, - a result object for the _third_ response
+- `last <ResponseResult>`, - a result object for the _last_ response
+
+#### `ResponseResult`
+
+- `encodedDataLength <Number>`, - Total number of bytes received for this request so far.
+- `fromDiskCache <Boolean>`, - Specifies that the request was served from the disk cache.
+- `fromServiceWorker <Boolean>`, - Specifies that the request was served from the ServiceWorker.
+- `headers <Object>`, - HTTP response headers.
+- `requestHeaders <Object>`, - (Optional) Refined HTTP request headers that were actually transmitted over the network.
+- `status <Number>`, - HTTP response status code.
+- `statusText <String>`, - HTTP response status text.
+- `url <String>`, - Response URL. This URL can be different from CachedResource.url in case of redirect.
+
+Example:
+
+```
+expect(httpProbe.getResponse('total/cart`).last.status).to.be.equal(200);
+```
+
 ## Snapshots
 
 Tests are working with snapshots. Snapshots are picked randomly and recorded for 30 seconds.
