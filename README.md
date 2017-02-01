@@ -18,6 +18,7 @@ Utility for HTTP validation. Implementation is based on the Chrome debugging pro
   - [`getRequest(search)`](#getrequestsearch)
     - [`RequestResult`](#requestresult)
   - [`getResponse(search)`](#getresponsesearch)
+    - [`ResponseResult`](#responseresult)
 - [Snapshots](#snapshots)
 - [Links](#links)
 
