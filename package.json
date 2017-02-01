@@ -4,6 +4,7 @@
   "description": "tility for HTTP validation. Implementation is based on the Chrome debugging protocol.",
   "main": "./src/index.js",
   "scripts": {
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "test": "mocha -r ./test/setup --recursive"
   },
   "repository": {
@@ -28,7 +29,10 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chrome-remote-interface": "^0.17.1",
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0",
     "sinon": "^1.17.7"
   }
 }
