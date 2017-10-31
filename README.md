@@ -125,6 +125,10 @@ Now it's possible to make a snapshot:
 
 ```
 URL=http://some-domain.com node create-snapshot.js
+
+// or visit multiple websites 
+
+URL="http://domain1.com http://domain2.com" node create-snapshot.js
 ```
 
 ## Links
