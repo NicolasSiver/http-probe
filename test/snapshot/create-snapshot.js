@@ -11,6 +11,8 @@ let performanceLogs = [];
 chromeRemoteInterface(client => {
     const {Network, Target, Page} = client;
     var targetId = null;
+    var resources = process.env.URL.split(' ');
+    var resourceVisits;
 
     Network.requestWillBeSent(params => {
         addLog('Network.requestWillBeSent', params, targetId);
@@ -20,27 +22,32 @@ chromeRemoteInterface(client => {
         addLog('Network.responseReceived', params, targetId);
     });
 
-    Promise.all([
-        Network.enable(), Page.enable()
-    ]).then(() => {
-        return Target.createTarget({url: process.env.URL});
-    }).then(target => {
-        console.log('Target ID: ' + target.targetId);
-        targetId = target.targetId;
-        return Page.navigate({url: process.env.URL});
-    }).then(() => {
-        return new Promise(resolve => {
-            console.log('Start recording, 30 seconds.');
-            setTimeout(() => {
-                flushSnapshot(performanceLogs);
-                client.close();
-                resolve();
-            }, 30000);
+    resourceVisits = resources.reduce((chain, resource) => {
+        return chain.then(() => {
+            return Target.createTarget({url: resource});
+        }).then(target => {
+            console.log('Target ID: ' + target.targetId + ', URL: ' + resource);
+            targetId = target.targetId;
+            return Page.navigate({url: resource});
+        }).then(() => {
+            return new Promise(resolve => {
+                console.log('Start recording, 8 seconds.');
+                setTimeout(() => resolve(), 8000);
+            });
         });
-    }).catch(error => {
-        console.error('Error did occur: ' + error);
-        client.close();
-    });
+    }, Promise.resolve());
+
+    Promise
+        .all([
+            Network.enable(), Page.enable()
+        ])
+        .then(() => resourceVisits)
+        .then(() => flushSnapshot(performanceLogs))
+        .then(() => client.close())
+        .catch(error => {
+            console.error('Error did occur: ' + error);
+            client.close();
+        });
 
 }).on('error', error => {
     console.error('Cannot connect to remote endpoint:', error);
