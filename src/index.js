@@ -30,17 +30,33 @@ var entities = {
 function HttpProbe(getLogMessages) {
     this.getLogMessages = getLogMessages;
     this.rawLogs = [];
+    this.webViewId = null;
 }
 
 HttpProbe.prototype.addMessages = function (messages) {
+    var parsedMessages, message, i, len;
+
     if (messages) {
-        this.rawLogs = this.rawLogs.concat(messages.map(function (logMessage) {
+
+        parsedMessages = messages.map(function (logMessage) {
             if (logMessage.hasOwnProperty('message') && isString(logMessage['message'])) {
                 return JSON.parse(logMessage['message']);
             } else {
                 return logMessage;
             }
-        }));
+        });
+
+        // Store messages only for the last session/web-view
+        for (i = 0, len = parsedMessages.length; i < len; ++i) {
+            message = parsedMessages[i];
+
+            if (this.webViewId !== message.webview) {
+                this.webViewId = message.webview;
+                this.rawLogs.length = 0;
+            }
+
+            this.rawLogs.push(message);
+        }
     }
 };
 

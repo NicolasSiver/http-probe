@@ -3,7 +3,8 @@ const fs = require('fs');
 const files = {
     Playstation: 'test/snapshot/store-playstation-com.snapshot',
     Amazon     : 'test/snapshot/www-amazon-com.snapshot',
-    Polymer    : 'test/snapshot/www-polymer-project-org.snapshot'
+    Polymer    : 'test/snapshot/www-polymer-project-org.snapshot',
+    Google     : 'test/snapshot/google-com.snapshot'
 };
 
 for (let key in files) {
