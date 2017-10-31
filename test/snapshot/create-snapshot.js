@@ -9,19 +9,24 @@ const chromeRemoteInterface = require('chrome-remote-interface'),
 let performanceLogs = [];
 
 chromeRemoteInterface(client => {
-    const {Network, Page} = client;
+    const {Network, Target, Page} = client;
+    var targetId = null;
 
     Network.requestWillBeSent(params => {
-        addLog('Network.requestWillBeSent', params);
+        addLog('Network.requestWillBeSent', params, targetId);
     });
 
     Network.responseReceived(params => {
-        addLog('Network.responseReceived', params);
+        addLog('Network.responseReceived', params, targetId);
     });
 
     Promise.all([
         Network.enable(), Page.enable()
     ]).then(() => {
+        return Target.createTarget({url: process.env.URL});
+    }).then(target => {
+        console.log('Target ID: ' + target.targetId);
+        targetId = target.targetId;
         return Page.navigate({url: process.env.URL});
     }).then(() => {
         return new Promise(resolve => {
@@ -41,10 +46,10 @@ chromeRemoteInterface(client => {
     console.error('Cannot connect to remote endpoint:', error);
 });
 
-function addLog(method, params) {
+function addLog(method, params, targetId) {
     performanceLogs.push({
         message: {method, params},
-        webview: null
+        webview: targetId
     });
 }
 
