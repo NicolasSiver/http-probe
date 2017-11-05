@@ -44,6 +44,30 @@ const HttpProbe = require('http-probe');
 let httpProbe = new HttpProbe(() => myMethodToExtractPerformanceLogs());
 ```
 
+Extended example for `Webdriver.io`.
+
+First of all you should activate performance logs for Google Chrome.
+
+```
+loggingPrefs: {
+    browser: 'ALL',
+    performance: 'ALL'
+}
+```
+
+Now in before hooks you can create an instance of HTTP Probe:
+
+```
+before(() => {
+    httpProbe = new HttpProbe(() => {
+        return browser.log('performance').value;
+    });
+});
+```
+
+You should use single test case per spec if you don't want fight with cache.
+
+
 ### `getRequest(search)`
 
 - `search <String|RegExp>` a pattern which will be executed against an URL
