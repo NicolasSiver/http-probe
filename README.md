@@ -15,11 +15,12 @@ Utility for HTTP validation. Implementation is based on the Chrome debugging pro
 
 - [Motivation](#motivation)
 - [API](#api)
-  - [`constructor(provider)`](#constructorprovider)
-  - [`getRequest(search)`](#getrequestsearch)
-    - [`RequestResult`](#requestresult)
-  - [`getResponse(search)`](#getresponsesearch)
-    - [`ResponseResult`](#responseresult)
+  - [`HttpProbe`](#httpprobe)
+    - [`constructor(provider)`](#constructorprovider)
+    - [`getRequest(search)`](#getrequestsearch)
+      - [`RequestResult`](#requestresult)
+    - [`getResponse(search)`](#getresponsesearch)
+      - [`ResponseResult`](#responseresult)
 - [Snapshots](#snapshots)
 - [Links](#links)
 
@@ -34,7 +35,9 @@ HTTP Probe tries to solve an issue with HTTP testing by providing API to work an
 
 Create an instance of the HTTP Probe. Don't forget to teardown an instance, otherwise `http-probe` will accumulate HTTP requests from every consecutive `getRequest` or `getResponse` invocation.
 
-### `constructor(provider)`
+### `HttpProbe`
+
+#### `constructor(provider)`
 
 - `provider <Function>` should return an array of performance logs
 
@@ -42,6 +45,7 @@ Example:
 
 ```
 const {HttpProbe} = require('http-probe');
+
 let httpProbe = new HttpProbe(() => myMethodToExtractPerformanceLogs());
 ```
 
@@ -56,7 +60,7 @@ loggingPrefs: {
 }
 ```
 
-Now in before hooks you can create an instance of HTTP Probe:
+Now in `before` hook you can create an instance of HTTP Probe:
 
 ```
 before(() => {
@@ -69,7 +73,7 @@ before(() => {
 You should use single test case per spec if you don't want fight with cache.
 
 
-### `getRequest(search)`
+#### `getRequest(search)`
 
 - `search <String|RegExp>` a pattern which will be executed against an URL
 
@@ -85,7 +89,7 @@ Returns a `Request` entity with several properties:
 - `third <RequestResult>`, - a result object for the _third_ request
 - `last <RequestResult>`, - a result object for the _last_ request
 
-#### `RequestResult`
+##### `RequestResult`
 
 - `headers <Object>`, - request's headers
 - `method <String>`, - HTTP method, 'GET', 'POST', etc.
@@ -97,7 +101,7 @@ Example:
 expect(httpProbe.getRequest('accounts/8`).executed).to.be.true;
 ```
 
-### `getResponse(search)`
+#### `getResponse(search)`
 
 - `search <String|RegExp>` a pattern which will be executed against an URL
 
@@ -113,7 +117,7 @@ Returns a `Response` entity with several properties:
 - `third <ResponseResult>`, - a result object for the _third_ response
 - `last <ResponseResult>`, - a result object for the _last_ response
 
-#### `ResponseResult`
+##### `ResponseResult`
 
 - `encodedDataLength <Number>`, - Total number of bytes received for this request so far.
 - `fromDiskCache <Boolean>`, - Specifies that the request was served from the disk cache.
