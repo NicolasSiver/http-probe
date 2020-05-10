@@ -7,6 +7,9 @@
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "test": "mocha -r ./test/setup --recursive"
   },
+  "engines": {
+    "node": ">=10"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NicolasSiver/http-probe.git"
