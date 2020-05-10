@@ -1,8 +1,8 @@
-const {isString}    = require('./util/is-string'),
-      listToResults = require('./util/list-to-results'),
-      NetworkEvents = require('./model/network-events'),
-      Request       = require('./model/request'),
-      Response      = require('./model/response');
+const {isString}      = require('./util/is-string'),
+      {listToResults} = require('./util/list-to-results'),
+      NetworkEvents   = require('./model/network-events'),
+      Request         = require('./model/request'),
+      Response        = require('./model/response');
 
 let entities = {
     [NetworkEvents.REQUEST_WILL_SEND]   : {

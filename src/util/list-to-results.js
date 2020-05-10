@@ -1,4 +1,4 @@
-module.exports = function (collection, prefix, selector) {
+module.exports.listToResults = (collection, prefix, selector) => {
     let length = collection.length;
 
     return {
