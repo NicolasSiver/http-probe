@@ -1,5 +1,5 @@
-module.exports = function (collection, prefix, selector) {
-    var length = collection.length;
+module.exports.listToResults = (collection, prefix, selector) => {
+    let length = collection.length;
 
     return {
         length             : length,

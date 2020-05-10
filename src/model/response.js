@@ -8,10 +8,11 @@ function Response(list, listToResults) {
 }
 
 function parametersToObject(params) {
-    var response;
+    let response;
 
     if (params) {
         response = params.response;
+
         return {
             encodedDataLength: response.encodedDataLength,
             fromDiskCache    : response.fromDiskCache,

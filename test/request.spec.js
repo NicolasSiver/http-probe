@@ -1,7 +1,7 @@
 const expect = require('chai').expect,
       sinon  = require('sinon');
 
-let HttpProbe = require('../src/index');
+let {HttpProbe} = require('../src/index');
 
 describe('Request', () => {
 
