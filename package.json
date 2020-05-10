@@ -1,7 +1,7 @@
 {
   "name": "http-probe",
   "version": "1.1.0",
-  "description": "tility for HTTP validation. Implementation is based on the Chrome debugging protocol.",
+  "description": "Utility for HTTP validation. Implementation is based on the Chrome debugging protocol.",
   "main": "./src/index.js",
   "scripts": {
     "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
