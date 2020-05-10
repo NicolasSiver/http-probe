@@ -41,7 +41,7 @@ Create an instance of the HTTP Probe. Don't forget to teardown an instance, othe
 Example: 
 
 ```
-const HttpProbe = require('http-probe');
+const {HttpProbe} = require('http-probe');
 let httpProbe = new HttpProbe(() => myMethodToExtractPerformanceLogs());
 ```
 
