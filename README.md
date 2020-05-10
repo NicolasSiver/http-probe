@@ -59,9 +59,9 @@ First of all you should activate performance logs for Google Chrome.
 
 ```json
 {
-"loggingPrefs": {
-        "browser": "ALL",
-        "performance": "ALL"
+    "loggingPrefs": {
+            "browser": "ALL",
+            "performance": "ALL"
     }
 }
 ```
@@ -103,7 +103,7 @@ Returns a `Request` entity with several properties:
 Example:
 
 ```js
-expect(httpProbe.getRequest('accounts/8`).executed).to.be.true;
+expect(httpProbe.getRequest('accounts/8').executed).to.be.true;
 ```
 
 #### `getResponse(search)`
@@ -136,7 +136,7 @@ Returns a `Response` entity with several properties:
 Example:
 
 ```js
-expect(httpProbe.getResponse('total/cart`).last.status).to.be.equal(200);
+expect(httpProbe.getResponse('total/cart').last.status).to.be.equal(200);
 ```
 
 ### `NetworkInspector`
@@ -189,7 +189,7 @@ networkInspector.dispose();
 
 #### `getLogs(deplete)`
 
-- `deplete <Boolean>` optional parameter, by default it's always `true`. If `false` logs will be preserved before the next `getLogs` invocation.
+- `deplete <Boolean>` an optional parameter, by default it's always `true`. If the parameter is `false` logs will be preserved before the next `getLogs` invocation.
 
 Returns a list of messages formatted to comply with Chrome debugging protocol.
 
