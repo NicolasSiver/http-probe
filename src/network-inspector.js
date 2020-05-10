@@ -29,6 +29,7 @@ class NetworkInspector {
             this.target.removeListener(NetworkEvents.REQUEST_WILL_SEND, this.requestListener);
             this.target.removeListener(NetworkEvents.RESPONSE_DID_RECEIVE, this.responseListener);
             this.target = null;
+            this.networkLogs.length = 0;
         }
     }
 
