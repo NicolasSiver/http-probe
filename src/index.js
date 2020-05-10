@@ -1,4 +1,5 @@
-const listToResults = require('./util/list-to-results'),
+const {isString}    = require('./util/is-string'),
+      listToResults = require('./util/list-to-results'),
       NetworkEvents = require('./model/network-events'),
       Request       = require('./model/request'),
       Response      = require('./model/response');
@@ -100,9 +101,5 @@ HttpProbe.prototype.getRequest = function (search) {
 HttpProbe.prototype.getResponse = function (search) {
     return this.getEntity(search, entities[NetworkEvents.RESPONSE_DID_RECEIVE]);
 };
-
-function isString(value) {
-    return typeof value === 'string' || value instanceof String;
-}
 
 module.exports = HttpProbe;
