@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.0.0] - 2020-05-10
 
 - Added Network Inspector to work with the solutions based on Event Emitter for network logs
+- Added security updates for libraries like `sshpk`, `js-yaml`, and `handlebars`
 - Changed library API for the main imports
 - Changed Node.js compatibility to use ver. 10 LTS
 - Changed development dependencies to use latest versions as for May 2020
