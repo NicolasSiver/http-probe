@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.0.0] - 2020-XX-XX
 
+- Added Network Inspector to work with the solutions based on Event Emitter for network logs
 - Changed Node.js compatibility to use ver. 10 LTS
 - Changed development dependencies to use latest versions as for May 2020
+- Changed project and code structure to utilize ES2015 features
 - Removed BitHound Score from the documentation
 
 ## [1.1.0] - 2017-10-30

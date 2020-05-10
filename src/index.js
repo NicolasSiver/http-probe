@@ -1,3 +1,4 @@
-const {HttpProbe} = require('./http-probe');
+const {HttpProbe}        = require('./http-probe'),
+      {NetworkInspector} = require('./network-inspector');
 
-module.exports = {HttpProbe};
+module.exports = {HttpProbe, NetworkInspector};
