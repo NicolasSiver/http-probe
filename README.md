@@ -27,8 +27,8 @@ Utility for HTTP validation. Implementation is based on the Chrome debugging pro
 
 ## Motivation
 
-While Selenium provides good set of tools to check UI feedback and states, it lacks tools for HTTP validation. 
-HTTP Probe tries to solve an issue with HTTP testing.
+While Selenium and other end-to-end solutions provide a good set of tools to check UI feedback and states, they lack tools for HTTP validation. 
+HTTP Probe tries to solve an issue with HTTP testing by providing API to work and analyze Performance (in particular Network) logs in the modern browsers like Chromium.
 
 ## API
 
