@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2020-XX-XX
+
+- Changed Node.js compatibility to use ver. 10 LTS
+- Changed development dependencies to use latest versions as for May 2020
+- Removed BitHound Score from the documentation
+
 ## [1.1.0] - 2017-10-30
 
 - Changed log registration to have only last Web View
