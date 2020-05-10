@@ -5,9 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2020-XX-XX
+## [2.0.0] - 2020-05-10
 
 - Added Network Inspector to work with the solutions based on Event Emitter for network logs
+- Changed library API for the main imports
 - Changed Node.js compatibility to use ver. 10 LTS
 - Changed development dependencies to use latest versions as for May 2020
 - Changed project and code structure to utilize ES2015 features
