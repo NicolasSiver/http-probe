@@ -1,25 +1,7 @@
-const {isString}      = require('./util/is-string'),
+const {ENTITIES}      = require('./model/entities'),
+      {isString}      = require('./util/is-string'),
       {listToResults} = require('./util/list-to-results'),
-      NetworkEvents   = require('./model/network-events'),
-      Request         = require('./model/request'),
-      Response        = require('./model/response');
-
-let entities = {
-    [NetworkEvents.REQUEST_WILL_SEND]   : {
-        Entity  : Request,
-        method  : NetworkEvents.REQUEST_WILL_SEND,
-        selector: function (item) {
-            return item.message.params.request.url;
-        }
-    },
-    [NetworkEvents.RESPONSE_DID_RECEIVE]: {
-        Entity  : Response,
-        method  : NetworkEvents.RESPONSE_DID_RECEIVE,
-        selector: function (item) {
-            return item.message.params.response.url;
-        }
-    }
-};
+      NetworkEvents   = require('./model/network-events');
 
 /**
  * Network domain allows tracking network activities of the page. It exposes information about http requests and responses,
@@ -95,11 +77,11 @@ HttpProbe.prototype.getParametersBySearch = function (search, messages, selector
 };
 
 HttpProbe.prototype.getRequest = function (search) {
-    return this.getEntity(search, entities[NetworkEvents.REQUEST_WILL_SEND]);
+    return this.getEntity(search, ENTITIES[NetworkEvents.REQUEST_WILL_SEND]);
 };
 
 HttpProbe.prototype.getResponse = function (search) {
-    return this.getEntity(search, entities[NetworkEvents.RESPONSE_DID_RECEIVE]);
+    return this.getEntity(search, ENTITIES[NetworkEvents.RESPONSE_DID_RECEIVE]);
 };
 
 module.exports = HttpProbe;
