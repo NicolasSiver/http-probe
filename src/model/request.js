@@ -8,10 +8,11 @@ function Request(list, listToResults) {
 }
 
 function parametersToObject(params) {
-    var request;
+    let request;
 
     if (params) {
         request = params.request;
+
         return {
             headers: request.headers,
             method : request.method,

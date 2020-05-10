@@ -1,9 +1,9 @@
-var listToResults = require('./util/list-to-results'),
-    NetworkEvents = require('./model/network-events'),
-    Request       = require('./model/request'),
-    Response      = require('./model/response');
+const listToResults = require('./util/list-to-results'),
+      NetworkEvents = require('./model/network-events'),
+      Request       = require('./model/request'),
+      Response      = require('./model/response');
 
-var entities = {
+let entities = {
     [NetworkEvents.REQUEST_WILL_SEND]   : {
         Entity  : Request,
         method  : NetworkEvents.REQUEST_WILL_SEND,
@@ -34,10 +34,9 @@ function HttpProbe(getLogMessages) {
 }
 
 HttpProbe.prototype.addMessages = function (messages) {
-    var parsedMessages, message, i, len;
+    let i, len, message, parsedMessages;
 
     if (messages) {
-
         parsedMessages = messages.map(function (logMessage) {
             if (logMessage.hasOwnProperty('message') && isString(logMessage['message'])) {
                 return JSON.parse(logMessage['message']);
@@ -61,7 +60,7 @@ HttpProbe.prototype.addMessages = function (messages) {
 };
 
 HttpProbe.prototype.getEntity = function (search, entityMeta) {
-    var Entity = entityMeta.Entity, method = entityMeta.method, selector = entityMeta.selector;
+    let {Entity, method, selector} = entityMeta;
 
     // Extract latest messages
     this.addMessages(this.getLogMessages());
@@ -79,15 +78,18 @@ HttpProbe.prototype.getMessagesByMethod = function (method, messages) {
 };
 
 HttpProbe.prototype.getParametersBySearch = function (search, messages, selector) {
-    var result = [], value;
-    messages.forEach(function (logMessage) {
+    let value;
+    let result = [];
+
+    messages.forEach(logMessage => {
         value = selector(logMessage);
 
-        if ((isString(search) && value.indexOf(search) !== -1)
-            || ((search instanceof RegExp) && search.test(value))) {
+        if ((isString(search) && value.indexOf(search) !== -1) ||
+            ((search instanceof RegExp) && search.test(value))) {
             result.push(logMessage.message.params);
         }
     });
+
     return result;
 };
 
