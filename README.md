@@ -98,6 +98,7 @@ Returns a `Request` entity with several properties:
 
 - `headers <Object>`, - request's headers
 - `method <String>`, - HTTP method, 'GET', 'POST', etc.
+- `postData <Object>`, - request's POST parameters
 - `url <String>`, - request's fully qualified URL 
 
 Example:

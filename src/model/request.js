@@ -14,9 +14,10 @@ function parametersToObject(params) {
         request = params.request;
 
         return {
-            headers: request.headers,
-            method : request.method,
-            url    : request.url
+            headers : request.headers,
+            method  : request.method,
+            postData: request.postData,
+            url     : request.url
         }
     }
 }
