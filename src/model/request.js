@@ -1,3 +1,5 @@
+const queryString = require('querystring');
+
 /**
  * @param {Array} list requests, where entity should include 'request' property
  * @param {Function} listToResults
@@ -16,7 +18,7 @@ function parametersToObject(params) {
         return {
             headers : request.headers,
             method  : request.method,
-            postData: request.postData,
+            postData: queryString.parse(request.postData),
             url     : request.url
         }
     }
