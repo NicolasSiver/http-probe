@@ -66,4 +66,8 @@ describe('Request', () => {
         expect(httpProbe.getRequest('feedback-us.js').first.headers).to.have.all.keys('Referer', 'User-Agent');
     });
 
+    it('includes post data', () => {
+       expect(httpProbe.getRequest('overlay/display.html').first.postData).to.have.all.keys('origSessionId', 'subPageType', 'pageType', 'ASIN', 'path', 'isAUI', 'referrer', 'queryString');
+    });
+
 });
