@@ -1,5 +1,7 @@
 const queryString = require('querystring');
 
+const {isJsonCollection} = require('../util/is-json-collection');
+
 /**
  * @param {Array} list requests, where entity should include 'request' property
  * @param {Function} listToResults
@@ -18,7 +20,7 @@ function parametersToObject(params) {
         return {
             headers : request.headers,
             method  : request.method,
-            postData: queryString.parse(request.postData),
+            postData: isJsonCollection(request.postData) ? JSON.parse(request.postData) : queryString.parse(request.postData),
             url     : request.url
         }
     }
