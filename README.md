@@ -60,8 +60,8 @@ First of all you should activate performance logs for Google Chrome.
 ```json
 {
     "loggingPrefs": {
-            "browser": "ALL",
-            "performance": "ALL"
+        "browser": "ALL",
+        "performance": "ALL"
     }
 }
 ```

@@ -4,11 +4,11 @@
   "description": "Utility for HTTP validation. Implementation is based on the Chrome debugging protocol.",
   "main": "./src/index.js",
   "scripts": {
-    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf ./.nyc_output",
     "test": "mocha -r ./test/setup --recursive"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "repository": {
     "type": "git",
@@ -30,12 +30,12 @@
   },
   "homepage": "https://github.com/NicolasSiver/http-probe#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chrome-remote-interface": "^0.28.2",
-    "coveralls": "^3.1.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^7.1.2",
+    "chai": "^4.3.4",
+    "chrome-remote-interface": "^0.31.0",
+    "coveralls": "^3.1.1",
+    "mocha": "^9.1.1",
     "mocha-lcov-reporter": "^1.3.0",
-    "sinon": "^9.0.2"
+    "nyc": "^15.1.0",
+    "sinon": "^11.1.2"
   }
 }
