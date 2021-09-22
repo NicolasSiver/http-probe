@@ -1,5 +1,4 @@
-const expect = require('chai').expect,
-      sinon  = require('sinon');
+const expect = require('chai').expect;
 
 let {isJsonCollection} = require('../src/util/is-json-collection');
 
