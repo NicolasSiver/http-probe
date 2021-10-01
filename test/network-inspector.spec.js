@@ -1,5 +1,6 @@
 const EventEmitter = require('events'),
-      expect       = require('chai').expect;
+      expect       = require('chai').expect,
+      sinon        = require('sinon');
 
 let NetworkEvents      = require('../src/model/network-events'),
     {NetworkInspector} = require('../src/index');

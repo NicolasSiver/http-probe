@@ -1,4 +1,5 @@
-const expect = require('chai').expect;
+const expect = require('chai').expect,
+      sinon  = require('sinon');
 
 let {HttpProbe} = require('../src/index');
 
@@ -66,7 +67,7 @@ describe('Request', () => {
     });
 
     it('includes post data', () => {
-       expect(httpProbe.getRequest('overlay/display.html').first.postData).to.have.all.keys('origSessionId', 'subPageType', 'pageType', 'ASIN', 'path', 'isAUI', 'referrer', 'queryString');
+        expect(httpProbe.getRequest('overlay/display.html').first.postData).to.have.all.keys('origSessionId', 'subPageType', 'pageType', 'ASIN', 'path', 'isAUI', 'referrer', 'queryString');
     });
 
 });

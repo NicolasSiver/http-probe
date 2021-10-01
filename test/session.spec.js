@@ -1,4 +1,5 @@
-const expect = require('chai').expect;
+const expect = require('chai').expect,
+      sinon  = require('sinon');
 
 let {HttpProbe} = require('../src/index');
 
