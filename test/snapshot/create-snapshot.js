@@ -10,9 +10,9 @@ let performanceLogs = [];
 
 chromeRemoteInterface(client => {
     const {Network, Target, Page} = client;
-    var targetId = null;
-    var resources = process.env.URL.split(' ');
-    var resourceVisits;
+    let resourceVisits;
+    let targetId = null;
+    let resources = process.env.URL.split(' ');
 
     Network.requestWillBeSent(params => {
         addLog('Network.requestWillBeSent', params, targetId);
